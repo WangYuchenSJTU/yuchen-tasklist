@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features
+    xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.0.0"
+    name="tasklist"
+>
+
+    <feature name="yuchen-tasklist" version="${pom.version}">
+        <feature>yuchen-tasklist-core</feature>
+        <feature>yuchen-tasklist-ui</feature>
+    </feature>
+    
+    <feature name="yuchen-tasklist-core" version="${pom.version}">
+        <feature>http</feature>
+        <feature>http-whiteboard</feature>
+		<feature>cxf-jaxws</feature>
+        <bundle>mvn:net.yuchen.tasklist/tasklist-model/${pom.version}</bundle>
+		<bundle>mvn:net.yuchen.tasklist/tasklist-server/${pom.version}</bundle>
+		<bundle>mvn:net.yuchen.tasklist/tasklist-proxy/${pom.version}</bundle>
+    </feature>
+    
+    <feature name="yuchen-tasklist-ui" version="${pom.version}">
+        <feature>yuchen-tasklist-core</feature>
+        <bundle>mvn:net.yuchen.tasklist/tasklist-webui/${pom.version}</bundle>
+        <configfile finalname="/etc/ConfigTasklistUi.cfg">mvn:net.yuchen.tasklist/tasklist-features/${pom.version}/cfg</configfile>
+    </feature>
+   
+</features>

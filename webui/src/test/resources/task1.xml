@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:task xmlns:ns1="http://task.jms2rest.camel.net">
+    <id>1001</id>
+    <name>lucas</name>
+    <url>http://lucas.com</url>
+</ns1:task>

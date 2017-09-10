@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright OPS4J Licensed under the Apache License, Version 2.0 (the 
+    "License"); you may not use this file except in compliance with the License. 
+    You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+    Unless required by applicable law or agreed to in writing, software distributed 
+    under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+    OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+    the specific language governing permissions and limitations under the License. -->
+    
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	 xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="
+	 	http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+	 	http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://svn.apache.org/repos/asf/aries/trunk/blueprint/blueprint-cm/src/main/resources/org/apache/aries/blueprint/compendium/cm/blueprint-cm-1.1.0.xsd
+	 ">
+	 
+	<cm:property-placeholder persistent-id="ConfigTasklistUi" update-strategy="reload" >
+		<cm:default-properties>
+			<cm:property name="title" value="Default Title"/>
+		</cm:default-properties>
+	</cm:property-placeholder>
+	
+    <bean id="taskServlet"
+        class="net.yuchen.tasklist.webui.TaskServlet"
+        init-method="refresh">
+        <property name="taskService" ref="taskService" />
+        <property name="title" value="${title}"></property>
+    </bean>
+
+    <reference id="taskService"
+        interface="net.yuchen.tasklist.model.TaskService" />
+
+    <service interface="javax.servlet.http.HttpServlet" ref="taskServlet">
+        <service-properties>
+            <entry key="alias" value="/taskui" />
+        </service-properties>
+    </service>
+
+</blueprint>
