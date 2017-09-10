@@ -33,6 +33,8 @@
     </cm:property-placeholder>
     
 <!-- this xml uses the CXF JAXWS client to consume the SOAP service and exports it as an OSGi Service. -->
+<!-- blueprint container will monitor events from OSGI framework and track the avalibility of services,
+     which means serviceListener or serviceTracker are no longer needed.-->
 
     <jaxws:client id="taskServiceProxy" serviceClass="net.yuchen.tasklist.model.TaskService"
         address="${taskServiceSoap.URL}" />
