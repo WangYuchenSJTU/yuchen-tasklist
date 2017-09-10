@@ -21,10 +21,13 @@ Deploy the service in Karaf
 Download Apache Karaf 4 here: http://karaf.apache.org/index/community/download.html
 
 feature:repo-add cxf 3.1.5
+
 feature:repo-add mvn:net.yuchen.tasklist/tasklist-features/1.0-SNAPSHOT/xml
 
 feature:install http http-whiteboard cxf-jaxws
+
 install -s mvn:javax.annotation/javax.annotation-api/1.2
+
 install -s mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.authz/1.0.0
 
 feature:install yuchen-tasklist
